@@ -54,13 +54,23 @@ char **c_str_tok(char *str, char *delm)
 		if (toks[p] == NULL)
 			return (NULL);
 		i = 0;
-		while ((str[si] != d_ch) &&
-		       (str[si] != '\0'))
-		{
-			toks[p][i] = str[si];
-			i++;
-			si++;
-		}
+
+		for (; (str[si] != d_ch) &&
+		       (str[si] != '\0'); i++, si++;)
+			   {
+					toks[p][i] = str[si];
+			   }
+		
+		// Note: replaced the while loop with a for loop
+
+		// while ((str[si] != d_ch) &&
+		//        (str[si] != '\0'))
+		// {
+		// 	toks[p][i] = str[si];
+		// 	i++;
+		// 	si++;
+		// }
+
 		toks[p][i] = '\0'; /* null terminate at end*/
 		p++;
 		si++;
