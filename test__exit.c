@@ -31,11 +31,11 @@ int cus_atoi(char *s)
  * Return: 0 if success 2 if fail
  */
 
-/* NOTE: CHANGED THE _EXIT NAME TO ON UNDERSCORE
+/* NOTE: 
 * REPLACED "COMMAND" WITH "CMD"
 * REPLACED "E_VALUE" TO "EXIT_vALUE"
 */
-int _exit(char **str, list_t *env, int num, char **cmd)
+int __exit(char **str, list_t *env, int num, char **cmd)
 {
 	int exit_value = 0;
 

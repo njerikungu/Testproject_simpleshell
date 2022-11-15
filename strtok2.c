@@ -55,11 +55,10 @@ char **c_str_tok(char *str, char *delm)
 			return (NULL);
 		i = 0;
 
-		for (; (str[si] != d_ch) &&
-		       (str[si] != '\0'); i++, si++;)
-			   {
-					toks[p][i] = str[si];
-			   }
+		for (; (str[si] != d_ch) && (str[si] != '\0'); i++, si++)
+		{
+			toks[p][i] = str[si];
+		}
 		
 		// Note: replaced the while loop with a for loop
 
