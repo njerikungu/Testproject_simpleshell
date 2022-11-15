@@ -1,64 +1,85 @@
 #include "test_shell.h"
 
 /**
- * c_strcat - concatenate two strings ignoring the first character ("~" in cd)
+ * cus_strcat - concatenate two strings ignoring the first character ("~" in cd)
  * @dest: string to be appended to
  * @src: string to append
  * Return: concatenated string
  */
-char *c_strcat(char *dest, char *src)
+
+/** NOTE: REPLACED C_STRCAT TO CUS_STRCAT ***/
+// char *c_strcat(char *dest, char *src)
+char *cus_strcat(char *dest, char *src)
 {
 	int len = 0;
 	int len2 = 0;
 	int total_len = 0;
-	int j = 0;
+	int j = 0, i;
 
+/** NOTE: REPLACED WHILE LOOP WITH FOR LOOP ***/
 	/* find total length of both strings to _realloc */
-	while (dest[len] != '\0')
-	{
-		len++;
-		total_len++;
-	}
-	while (src[len2] != '\0')
-	{
-		len2++;
-		total_len++;
-	}
+	for (; dest[len] != '\0'; len++, total_len++)
+		;
+
+	// while (dest[len] != '\0')
+	// {
+	// 	len++;
+	// 	total_len++;
+	// }
+
+/** NOTE: REPLACED WHILE LOOP WITH FOR LOOP ***/
+	for (; src[len2] != '\0'; len2++, total_len++)
+		;
+	// while (src[len2] != '\0')
+	// {
+	// 	len2++;
+	// 	total_len++;
+	// }
 
 	/* _realloc because dest was malloced outside of function */
 	dest = _realloc(dest, len, sizeof(char) * total_len + 1);
 
-	j = 1; /* ignore the first character */
-	while (src[j] != '\0')
+	// j = 1; 
+
+	/** NOTE: REPLACED WHILE LOOP WITH FOR LOOP ***/
+	for (j = 1; src[j] != '\0'; j++, len++)
 	{
 		dest[len] = src[j];
-		len++;
-		j++;
 	}
 	dest[len] = '\0';
+
+	// while (src[j] != '\0')
+	// {
+	// 	dest[len] = src[j];
+	// 	len++;
+	// 	j++;
+	// }
+	// dest[len] = '\0';
 
 	return (dest);
 }
 
 /**
- * c_setenv - custom _setenv by concatenating string first before setting
+ * cus_setenv - custom _setenv by concatenating string first before setting
  * @env: environmental variable linked list
  * @name: environmental variable name (e.g. "OLDPWD")
  * @dir: directory path (e.g. "/home/vagrant/directory1")
  * Return: 0 on success (e.g. "OLDPWD=/home/vagrant/directory1")
  */
-int c_setenv(list_t **env, char *name, char *dir)
+
+/** NOTE: REPLACED C_STRCAT TO CUS_STRCAT ***/
+int cus_setenv(list_t **env, char *name, char *dir)
 {
 	int index = 0, j = 0;
-	char *cat;
+	/** NOTE: REPLACED cat TO cat_str ***/
+	char *cat_str;
 	list_t *holder;
 
-	cat = _strdup(name); /* create new concatenated string */
-	cat = _strcat(cat, "=");
-	cat = _strcat(cat, dir);
-	index = find_env(*env, name); /* get idx to env var in linked list */
+	cat_str = _strdup(name); /* create new concatenated string */
+	cat_str = _strcat(cat_str, "=");
+	cat_str = _strcat(cat_str, dir);
+	index = find_env(*env, name); /* get index to env var in linked list */
 
-	/* traverse to idx, free node data, reassign data */
 	holder = *env;
 	while (j < index)
 	{
@@ -66,8 +87,8 @@ int c_setenv(list_t **env, char *name, char *dir)
 		j++;
 	}
 	free(holder->var);
-	holder->var = _strdup(cat);
-	free(cat);
+	holder->var = _strdup(cat_str);
+	free(cat_str);
 	return (0);
 }
 
@@ -81,13 +102,13 @@ void cd_only(list_t *env, char *current)
 	char *home = NULL;
 
 	home = get_env("HOME", env);
-	c_setenv(&env, "OLDPWD", current); /* update env OLDPWD */
+	cus_setenv(&env, "OLDPWD", current); /* update env OLDPWD */
 	free(current);
 	if (access(home, F_OK) == 0) /* if exist, go to home dir */
 		chdir(home);
 	current = NULL;
 	current = getcwd(current, 0);
-	c_setenv(&env, "PWD", current); /* update env PWD */
+	cus_setenv(&env, "PWD", current); /* update env PWD */
 	free(current);
 	free(home);
 }
@@ -106,12 +127,12 @@ int cd_execute(list_t *env, char *current, char *dir, char *str, int num)
 
 	if (access(dir, F_OK) == 0)
 	{
-		c_setenv(&env, "OLDPWD", current); /* update env OLDPWD */
+		cus_setenv(&env, "OLDPWD", current); /* update env OLDPWD */
 		free(current);
 		chdir(dir);
 		current = NULL;
 		current = getcwd(current, 0); /* get current working dir */
-		c_setenv(&env, "PWD", current); /* update env PWD */
+		cus_setenv(&env, "PWD", current); /* update env PWD */
 		free(current);
 	}
 	else
@@ -141,7 +162,7 @@ int _cd(char **str, list_t *env, int num)
 		if (str[1][0] == '~') /* Usage: cd ~ */
 		{
 			dir = get_env("HOME", env);
-			dir = c_strcat(dir, str[1]);
+			dir = cus_strcat(dir, str[1]);
 		}
 		else if (str[1][0] == '-') /* Usage: cd - */
 		{
