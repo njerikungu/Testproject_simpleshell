@@ -11,7 +11,7 @@ void not_found(char *str, int c_n, list_t *env)
 	int count = 0;
 	char *shell, *num;
 
-	shell = get_env("_", env); /* get shell name to write */
+	shell = _getenv("_", env); /* get shell name to write */
 	while (shell[count] != '\0')
 		count++;
 	write(STDOUT_FILENO, shell, count);
@@ -43,7 +43,7 @@ void cant_cd_to(char *str, int c_n, list_t *env)
 	int count = 0;
 	char *shell, *num;
 
-	shell = get_env("_", env);
+	shell = _getenv("_", env);
 	while (shell[count] != '\0')
 		count++;
 	write(STDOUT_FILENO, shell, count);
@@ -75,7 +75,7 @@ void illegal_number(char *str, int c_n, list_t *env)
 	int count = 0;
 	char *shell = NULL, *num = NULL;
 
-	shell = get_env("_", env);
+	shell = _getenv("_", env);
 	while (shell[count] != '\0')
 		count++;
 	write(STDOUT_FILENO, shell, count);

@@ -28,6 +28,6 @@ list_t *env_linked_list(char **env)
 int _env(char **str, list_t *env)
 {
 	free_double_ptr(str); /* frees user input */
-	print_list(env); /* prints env */
+	_printlist(env); /* prints env */
 	return (0);
 }

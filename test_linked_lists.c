@@ -1,11 +1,11 @@
 #include "test_shell.h"
 
 /**
- * print_list - _print linked list
+ * _printlist - _print linked list
  * @h: linked list
  * Return: size of linked list
  */
-size_t print_list(list_t *h)
+size_t _printlist(list_t *h)
 {
 	list_t *c_list = h;
 	int count = 0;

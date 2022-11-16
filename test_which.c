@@ -16,7 +16,7 @@ char *_which(char *str, list_t *env)
 	int i = 0;
 
 	/* tokenize path dirs */
-	path = get_env("PATH", env);
+	path = _getenv("PATH", env);
 	tokens = c_str_tok(path, ":");
 	free(path);
 

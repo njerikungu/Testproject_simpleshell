@@ -78,7 +78,7 @@ int cus_setenv(list_t **env, char *name, char *dir)
 	cat_str = _strdup(name); /* create new concatenated string */
 	cat_str = _strcat(cat_str, "=");
 	cat_str = _strcat(cat_str, dir);
-	index = find_env(*env, name); /* get index to env var in linked list */
+	index = _findenv(*env, name); /* get index to env var in linked list */
 
 	holder = *env;
 	while (j < index)
@@ -101,7 +101,7 @@ void cd_only(list_t *env, char *current)
 {
 	char *home = NULL;
 
-	home = get_env("HOME", env);
+	home = _getenv("HOME", env);
 	cus_setenv(&env, "OLDPWD", current); /* update env OLDPWD */
 	free(current);
 	if (access(home, F_OK) == 0) /* if exist, go to home dir */
@@ -161,13 +161,13 @@ int _cd(char **str, list_t *env, int num)
 	{
 		if (str[1][0] == '~') /* Usage: cd ~ */
 		{
-			dir = get_env("HOME", env);
+			dir = _getenv("HOME", env);
 			dir = cus_strcat(dir, str[1]);
 		}
 		else if (str[1][0] == '-') /* Usage: cd - */
 		{
 			if (str[1][1] == '\0')
-				dir = get_env("OLDPWD", env);
+				dir = _getenv("OLDPWD", env);
 		}
 		else /* Usage: cd directory1 */
 		{

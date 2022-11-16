@@ -104,7 +104,7 @@ int prompt(char **en)
 			non_interactive(env);
 		signal(SIGINT, ctrl_c); /* makes ctrl+c not work */
 		command = NULL; i = 0; /* reset vars each time loop runs */
-		i = get_line(&command); /* read user's cmd in stdin */
+		i = _getline(&command); /* read user's cmd in stdin */
 		ctrl_D(i, command, env); /* exits shell if ctrl-D */
 		n_command = command;
 		command = ignore_space(command);
