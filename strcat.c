@@ -24,6 +24,16 @@ char *_strcat(char *dest, char *src)
 		len2++;
 		total_len++;
 	}
+    /**
+    for (len = 0; dest[len] != '\0'; len++)
+    {
+        total_len++;
+    }
+    for (len2 = 0; src[len2] != '\0'; len2++)
+    {
+        total_len++;
+    }
+    */
 
 	/* _realloc because dest was malloced outside of function */
 	dest = _realloc(dest, len, sizeof(char) * total_len + 1);
@@ -34,7 +44,14 @@ char *_strcat(char *dest, char *src)
 		len++;
 		j++;
 	}
-	dest[len] = '\0';
+    /*
+    for (j = 0; src[j] != '\0'; j++)
+    {
+        *(dest + len) = *(src + j);
+        len++;
+    }
+    */
 
+	dest[len] = '\0';
 	return (dest);
 }
