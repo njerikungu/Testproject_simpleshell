@@ -9,30 +9,15 @@
  * Return: copy of original source
  */
 
-char *_strcpy(char *dest, char *src)
-{
-	int i, len;
-/*
-len = 0;
-while (src[len] != '\0')
-len ++;
+// char *_strcpy(char *dest, char *src)
+// {
+// 	int i, len;
 
-i = 0;
-while (i <= len)
-*(dest + i) = *(src + i);
-i++;
+// 	for (len = 0; src[len] != '\0'; len++)
+// 		;
 
-return (dest);
-}
-*/
+// 	for (i = 0; i <= len; i++)
+// 		dest[i] = src[i];
 
-i = 0;
-
-	for (len = 0; src[len] != '\0'; len++)
-		;
-
-	for (i = 0; i <= len; i++)
-		dest[i] = src[i];
-
-	return (dest);
-}
+// 	return (dest);
+// }
