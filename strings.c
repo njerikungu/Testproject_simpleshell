@@ -114,6 +114,7 @@ int _strcmp(char *s1, char *s2)
 		return (*(s1 + i) - *(s2 + i));
 	else
 		return (0);
+}
 
 /**
  * _strcpy - copies the string pointed to by src,
@@ -124,7 +125,7 @@ int _strcmp(char *s1, char *s2)
  * Return: copy of original source
  */
 
-char *_strcpy(char *dest, char *src)
+ char *_strcpy(char *dest, char *src)
 {
 	int i, len;
 /*
@@ -150,5 +151,4 @@ i = 0;
 		dest[i] = src[i];
 
 	return (dest);
-}
 }
