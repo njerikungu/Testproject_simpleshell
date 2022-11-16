@@ -185,6 +185,6 @@ int _cd(char **str, list_t *env, int num)
 	}
 	else /* Usage: cd */
 		cd_only(env, current);
-	free_double_ptr(str); /* frees user input */
+	freeptr(str); /* frees user input */
 	return (exit_stat);
 }

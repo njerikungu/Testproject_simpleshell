@@ -14,7 +14,7 @@
 
 void clear_exit(char **str, list_t *env)
 {
-	free_double_ptr(str);
+	freeptr(str);
 	free_linked_list(env);
 	_exit(0);
 }
@@ -43,7 +43,7 @@ int _execve(char **str, list_t *env, int num)
 	if (access(holder, X_OK) != 0)
 	{
 		not_found(str[0], num, env);
-		free_double_ptr(str);
+		freeptr(str);
 		return (127);
 	}
 	else 
@@ -60,7 +60,7 @@ int _execve(char **str, list_t *env, int num)
 		else 
 		{
 			wait(&status);
-			free_double_ptr(str);
+			freeptr(str);
 			if (i == 0)
 				free(holder);
 		}

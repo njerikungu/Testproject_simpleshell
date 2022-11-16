@@ -83,11 +83,11 @@ int _unsetenv(list_t **env, char **str)
 	if (str[1] == NULL)
 	{
 		write(STDOUT_FILENO, "Too few arguments\n", 18);
-		free_double_ptr(str);
+		freeptr(str);
 		return (-1);
 	}
 	index = _findenv(*env, str[1]);
-	free_double_ptr(str);
+	freeptr(str);
 	if (index == -1) 
 	{
 		write(STDOUT_FILENO, "Cannot find\n", 12);
@@ -153,7 +153,7 @@ int _setenv(list_t **env, char **str)
 	if (str[1] == NULL || str[2] == NULL)
 	{
 		write(STDOUT_FILENO, "Too few arguments\n", 18);
-		free_double_ptr(str);
+		freeptr(str);
 		return (-1);
 	}
 	cat_str = _strdup(str[1]); /* concatenate strings to be new node data */
@@ -176,7 +176,7 @@ int _setenv(list_t **env, char **str)
 		holder->var = _strdup(cat_str); /* assign to new malloced data */
 	}
 	free(cat_str);
-	free_double_ptr(str);
+	freeptr(str);
 	return (0);
 }
 
@@ -209,7 +209,7 @@ list_t *env_linked_list(char **env)
  */
 int _env(char **str, list_t *env)
 {
-	free_double_ptr(str); /* frees user input */
+	freeptr(str); /* frees user input */
 	_printlist(env); /* prints env */
 	return (0);
 }

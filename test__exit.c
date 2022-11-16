@@ -48,12 +48,12 @@ int __exit(char **str, list_t *env, int num, char **cmd)
 	{
 		/* print error msg */
 		illegal_number(str[1], num, env);
-		free_double_ptr(str);
+		freeptr(str);
 		return (2);
 	}
-	free_double_ptr(str);
+	freeptr(str);
 	free_linked_list(env);
 	if (cmd != NULL)
-		free_double_ptr(cmd);
+		freeptr(cmd);
 	exit(exit_value);
 }

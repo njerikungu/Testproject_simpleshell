@@ -33,12 +33,12 @@ char *_which(char *str, list_t *env)
 		if (access(cat_str, F_OK) == 0)
 		{
 			/* free tokens before returning legit fleshed path */
-			free_double_ptr(tokens);
+			freeptr(tokens);
 			return (cat_str);
 		}
 		free(cat_str); /* free concatenated string if cmd is never found */
 		i++;
 	}
-	free_double_ptr(tokens);
+	freeptr(tokens);
 	return (str); /* return string if not found; won't pass execve */
 }
