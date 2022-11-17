@@ -70,16 +70,15 @@ list_t *get_pathdir(char *path);
 char *fill_pathdir(char *path);
 int execute(char **args, char **front);
 void sig_handler(int sig);
-void free_list(list_t *head);
 char *_itoa(int num);
+
 void handle_line(char **line, ssize_t read);
-void variable_replacement(char **args, int *ret_val);
+void variable_replacement(char **args, int *exe_ret);
 char *_getargs(char *line, int *exe_ret);
 int call_args(char **args, char **front, int *exe_ret);
 int run_args(char **args, char **front, int *exe_ret);
 int handle_args(int *exe_ret);
 int check_args(char **args);
-void free_args(char **args, char **front);
 char **replace_aliases(char **args);
 int cant_open(char *path_name);
 /* string funcs */
@@ -94,13 +93,14 @@ char *_strncat(char *dest, const char *src, size_t n);
 
 /* Built funcs */
 int (*get_builtin(char *command))(char **args, char **front);
-int sh_exit(char **args, char **front);
+int shellby_exit(char **args, char **front);
 int _env(char **args, char __attribute__((__unused__)) **front);
 int _setenv(char **args, char __attribute__((__unused__)) **front);
 int _unsetenv(char **args, char __attribute__((__unused__)) **front);
-int _cd(char **args, char __attribute__((__unused__)) **front);
-int _alias(char **args, char __attribute__((__unused__)) **front);
-int _help(char **args, char __attribute__((__unused__)) **front);
+int shellby_cd(char **args, char __attribute__((__unused__)) **front);
+int shellby_alias(char **args, char __attribute__((__unused__)) **front);
+int shellby_help(char **args, char __attribute__((__unused__)) **front);
+
 
 /* env helpers */
 char **_copyenv(void);

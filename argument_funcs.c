@@ -1,7 +1,7 @@
 #include "simpleshell.h"
 
 /**
- * get_args - Gets a command from standard input.
+ * _getargs - Gets a command from standard input.
  * @line: A buffer to store the command.
  * @ret_val: The return value of the last executed command.
  * Return: If an error occurs - NULL. Otherwise - a pointer to the stored command.
@@ -23,7 +23,7 @@ char *_getargs(char *line, int *ret_val)
 		hist++;
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, prompt, 2);
-		return (get_args(line, ret_val));
+		return (_getargs(line, ret_val));
 	}
 
 	line[read - 1] = '\0';
@@ -136,7 +136,7 @@ int handle_args(int *ret_val)
 	int ret = 0, index;
 	char **args, *line = NULL, **front;
 
-	line = get_args(line, ret_val);
+	line = _getargs(line, ret_val);
 	if (!line)
 		return (END_OF_FILE);
 
