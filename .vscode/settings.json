@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.ejs": "html",
-        "*.tcc": "c"
+        "*.tcc": "c",
+        "simpleshell.h": "c"
     }
 }
